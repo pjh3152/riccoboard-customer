@@ -2,6 +2,14 @@
   text-align: center;
 }
 
+.Toastify__toast-container {
+  width: fit-content !important;
+}
+
+.Toastify__toast {
+  width: fit-content !important;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
