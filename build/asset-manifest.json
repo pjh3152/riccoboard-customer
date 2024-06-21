@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/static/css/main.f453cb7d.css",
+    "main.js": "/static/js/main.f26c3285.js",
+    "static/media/ricco.png": "/static/media/ricco.259d90349fb9ba98313f.png",
+    "static/media/bootstrap-icons.woff?": "/static/media/bootstrap-icons.39795c0b4513de014cf8.woff",
+    "static/media/bootstrap-icons.woff2?": "/static/media/bootstrap-icons.b7bcc075b395c14ce8c2.woff2",
+    "index.html": "/index.html",
+    "main.f453cb7d.css.map": "/static/css/main.f453cb7d.css.map",
+    "main.f26c3285.js.map": "/static/js/main.f26c3285.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f453cb7d.css",
+    "static/js/main.f26c3285.js"
+  ]
+}

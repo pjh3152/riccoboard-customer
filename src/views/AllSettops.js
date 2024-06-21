@@ -29,12 +29,28 @@ const AllSettops = () => {
 
   // Customer 클립보드 복사
   const copyClipBoard = (customer) => {
-    Swal.fire({ title: "복사되었습니다 (" + customer + ")",  timer:1500, showConfirmButton: true, icon:"success"});
+    Swal.fire({
+      title: "복사되었습니다 (" + customer + ")",
+      timer: 1500,
+      showConfirmButton: true,
+      icon: "success",
+    });
+  };
+
+  // 셋탑 IP 업데이트 시간비교 (1시간 이내인지)
+  const checkDateTime = (datetime) => {
+    const time =
+      (new Date().getTime() - new Date(datetime).getTime()) / 1000 / 60;
+    if (time <= 60) {
+      return true;
+    } else {
+      return false;
+    }
   };
 
   return (
     <div className="container mt-4">
-      <Spinner load = {load}/>      
+      <Spinner load={load} />
       <div className="row justify-content-center">
         <div className="col-lg-8 text-center d-flex justify-content-end py-2 pe-3">
           <div title="새로고침" onClick={reload} style={{ cursor: "pointer" }}>
@@ -61,8 +77,15 @@ const AllSettops = () => {
           <div className="row justify-content-center">
             <div className="col-lg-2 bg-black bg-opacity-10 py-2">
               {data.d_customer}
-              <CopyToClipboard text={data.d_customer} onCopy={()=>copyClipBoard(data.d_customer)}>
-                <i className="bi bi-copy ms-3" title="복사" style={{cursor:'pointer'}}></i>
+              <CopyToClipboard
+                text={data.d_customer}
+                onCopy={() => copyClipBoard(data.d_customer)}
+              >
+                <i
+                  className="bi bi-copy ms-3"
+                  title="복사"
+                  style={{ cursor: "pointer" }}
+                ></i>
               </CopyToClipboard>
             </div>
             <div className="col-lg-2 bg-black bg-opacity-10 py-2">
@@ -72,7 +95,11 @@ const AllSettops = () => {
               {data.d_ip}
             </div>
             <div className="col-lg-2 bg-black bg-opacity-10 text-center py-2">
-              {data.d_datetime}
+              {checkDateTime(data.d_datetime) ? (
+                <div className="text-primary">{data.d_datetime}</div>
+              ) : (
+                <div className="text-danger">{data.d_datetime}</div>
+              )}
             </div>
           </div>
         );
