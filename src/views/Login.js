@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import Swal from "sweetalert2";
 import { useCookies } from "react-cookie";
 
 const Login = () => {
@@ -17,7 +17,7 @@ const Login = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (cookies.account) {
+    if (cookies.customer) {
       customerRef.current.value = cookies.customer;
       setInput({ ...input, customer: cookies.customer, saveCustomer: true });
       pwdRef.current.focus();
@@ -47,17 +47,20 @@ const Login = () => {
 
     if (customer.length <= 0 || pwd.length <= 0) return;
 
+    const expires = new Date();
+    expires.setFullYear(expires.getFullYear() + 10);  // 쿠키 만료일을 10년후로 설정한다.
+
     const result = await axios.get("/login", { params: { customer, pwd } });
 
     // 고객명 저장에 체크되었다면 쿠키에 고객명을 저장한다.
     if (saveCustomer) {
-      setCookie("customer", customer);
+      setCookie("customer", customer, { path: "/", expires: expires });
     } else {
       removeCookie("customer");
     }
 
     if (result.data === "failed") {
-      toast("고객명과 비밀번호를 확인해 주세요!!");
+      Swal.fire({ title: "고객명과 비밀번호를 확인해 주세요!!", showConfirmButton: true, icon:"warning"});
     } else {
       sessionStorage.setItem("customer", customer);
 
@@ -102,14 +105,14 @@ const Login = () => {
         <p className="mt-4">
           <input
             type="checkbox"
-            id="saveAccount"
+            id="saveCustomer"
             onClick={checkChanged}
             style={{ cursor: "pointer" }}
             className="me-1"
             checked={input.saveCustomer}
           />
           <label
-            htmlFor="saveAccount"
+            htmlFor="saveCustomer"
             style={{ cursor: "pointer", webkitUserSelect: "none" }}
           >
             고객명 저장

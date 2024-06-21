@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { toast } from 'react-toastify';
 import Spinner from "../components/Spinner";
+import { CopyToClipboard } from "react-copy-to-clipboard";
+import Swal from "sweetalert2";
 
 const Settops = () => {
   const [list, setList] = useState([]);
@@ -30,8 +31,7 @@ const Settops = () => {
 
   // IP 클립보드 복사
   const copyClipBoard = (ip) => {
-    navigator.clipboard.writeText(ip);
-    toast("복사되었습니다 (" + ip + ")");
+    Swal.fire({ title: "복사되었습니다 (" + ip + ")",  timer:1500, showConfirmButton: true, icon:"success"});
   }
 
   return (
@@ -61,7 +61,9 @@ const Settops = () => {
             </div>
             <div className="col-lg-2 bg-black bg-opacity-10 text-center py-2">
               {data.d_ip}
-              <i className="bi bi-copy ms-3" title="복사" onClick={() => copyClipBoard(data.d_ip)} style={{cursor:'pointer'}}></i>
+              <CopyToClipboard text={data.d_ip} onCopy={()=>copyClipBoard(data.d_ip)}>
+                <i className="bi bi-copy ms-3" title="복사" style={{cursor:'pointer'}}></i>
+              </CopyToClipboard>
             </div>
             <div className="col-lg-2 bg-black bg-opacity-10 text-center py-2">
               {data.d_datetime}

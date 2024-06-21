@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useRef, useEffect, useState } from "react";
-import { toast } from 'react-toastify';
+import Swal from "sweetalert2";
 
 const Account = () => {
 
@@ -29,32 +29,32 @@ const Account = () => {
     const {pwd, pwd2, pwd3} = input;
 
     if(pwd.length <= 0) {
-      toast.warning("현재 비밀번호를 입력해 주세요!");
+      Swal.fire({ title: "현재 비밀번호를 입력해 주세요!", showConfirmButton: true, icon:"warning"});
       return;
     }
     if(pwd2.length <= 0) {
-      toast.warning("새 비밀번호를 입력해 주세요!");
+      Swal.fire({ title: "새 비밀번호를 입력해 주세요!", showConfirmButton: true, icon:"warning"});
       return;
     }
     if(pwd3.length <= 0) {
-      toast.warning("새 비밀번호 확인을 입력해 주세요!");
+      Swal.fire({ title: "새 비밀번호 확인을 입력해 주세요!", showConfirmButton: true, icon:"warning"});
       return;
     }
     if(pwd === pwd2) {
-      toast.warning("현재 비밀번호와 새 비밀번호가 동일합니다!");
+      Swal.fire({ title: "현재 비밀번호와 새 비밀번호가 동일합니다!", showConfirmButton: true, icon:"warning"});
       return;
     }
     if(pwd2 !== pwd3) {
-      toast.warning("새 비밀번호와 비밀번호 확인이 다릅니다!");
+      Swal.fire({ title: "새 비밀번호와 비밀번호 확인이 다릅니다!", showConfirmButton: true, icon:"warning"});
       return;
     }
 
     const result = axios.get("/changeAccount", {params:{account:sessionStorage.getItem("account"), pwd, pwd2}});
 
     if(result.data === "failed") {
-      toast.error("현재 비밀번호가 일치하지 않습니다!");
+      Swal.fire({ title: "현재 비밀번호가 일치하지 않습니다!", showConfirmButton: true, icon:"warning"});
     } else {
-      toast.success("비밀번호를 변경했습니다!");
+      Swal.fire({ title: "비밀번호를 변경했습니다!", showConfirmButton: true, icon:"success"});
     }
     setInput({...input, pwd:"",pwd2:"",pwd3:""});
     inputRef.current.focus();

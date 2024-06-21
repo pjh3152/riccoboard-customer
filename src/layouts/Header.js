@@ -38,18 +38,21 @@ const Header = () => {
                 <Link
                   to="/allSettops"
                   className="me-4 text-light text-decoration-none"
+                  title="모든셋탑"
                 >
                   All Set-tops
                 </Link>
                 <Link
                   to="/customerList"
                   className="me-4 text-light text-decoration-none"
+                  title="고객등록"
                 >
                   Add Customer
                 </Link>
                 <Link
                   to="/account"
                   className="me-4 text-light text-decoration-none"
+                  title="로그인 계정관리"
                 >
                   Account
                 </Link>
@@ -57,6 +60,7 @@ const Header = () => {
                   onClick={logout}
                   className="me-2"
                   style={{ cursor: "pointer" }}
+                  title="로그아웃"
                 >
                   <i className="bi bi-box-arrow-right me-2"></i>Logout
                 </div>
@@ -67,12 +71,14 @@ const Header = () => {
                 <Link
                   to="/settops"
                   className="me-4 text-light text-decoration-none"
+                  title="셋탑정보"
                 >
                   Set-tops
                 </Link>
                 <Link
                   to="/account"
                   className="me-4 text-light text-decoration-none"
+                  title="로그인 계정관리"
                 >
                   Account
                 </Link>
@@ -80,6 +86,7 @@ const Header = () => {
                   onClick={logout}
                   className="me-2"
                   style={{ cursor: "pointer" }}
+                  title="로그아웃"
                 >
                   <i className="bi bi-box-arrow-right me-2"></i>Logout
                 </div>

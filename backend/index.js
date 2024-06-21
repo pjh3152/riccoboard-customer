@@ -5,6 +5,7 @@ const port = 8000;
 
 // 클라이언트에서 보낸값을 해석한다 (JSON 형태의 body 데이터)
 app.use(express.json());
+app.use(express.static("build"));
 
 app.get("/", (req, res) => {
   res.send("server is started..");

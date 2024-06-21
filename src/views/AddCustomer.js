@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import axios from "axios";
-import { toast } from "react-toastify";
 import Spinner from "../components/Spinner";
+import Swal from "sweetalert2";
 
 const AddCustomer = () => {
   const [state, setState] = useState("Add");
@@ -50,7 +50,7 @@ const AddCustomer = () => {
       if (result.data.length > 0) {
         if(result.data === "same") {
           setLoad(false);
-          toast.warning("이미 동일한 고객명이 존재합니다!");
+          Swal.fire({ title: "이미 동일한 고객명이 존재합니다!", showConfirmButton: true, icon:"warning"});
         }
       }
     } else {
@@ -58,7 +58,7 @@ const AddCustomer = () => {
       if (result.data.length > 0) {
         if(result.data === "same") {
           setLoad(false);
-          toast.warning("이미 동일한 고객명이 존재합니다!");
+          Swal.fire({ title: "이미 동일한 고객명이 존재합니다!", showConfirmButton: true, icon:"warning"});
         }
       }
     }
@@ -78,9 +78,21 @@ const AddCustomer = () => {
 
   // 삭제
   const deleteCustomer = async () => {
-    await axios.delete("/deleteCustomer", {params:{idx:input.idx}});
-    clearCustomer();
-    getList();
+    Swal.fire({
+      title: "정말 삭제하시겠습니까?",
+      text: "삭제한 데이터는 복구할 수 없습니다!",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes",
+      cancelButtonText: "No",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        await axios.delete("/deleteCustomer", {params:{idx:input.idx}});
+        clearCustomer();
+        getList();
+      }
+    });
   }
 
   // Clear

@@ -10,6 +10,16 @@
   width: fit-content !important;
 }
 
+.swal2-popup {
+  background-color:#eeeeee;
+  font-size: 9px !important;
+  color:#5a5a5a;
+  width: 380px;
+  /* padding-bottom: 13px; */
+  border-radius:10px;
+  box-shadow:7px 7px 12px gray;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
