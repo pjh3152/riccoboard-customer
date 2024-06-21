@@ -59,16 +59,16 @@ const AllSettops = () => {
         </div>
       </div>
       <div className="row justify-content-center">
-        <div className="col-lg-2 bg-black bg-opacity-25 text-center py-2 shadow">
+        <div className="col-lg-2 text-center text-white fw-bold py-2 shadow" style={{background:'#9c88ff'}}>
           Customer
         </div>
-        <div className="col-lg-2 bg-black bg-opacity-25 text-center py-2 shadow">
+        <div className="col-lg-2 text-center text-white fw-bold py-2 shadow" style={{background:'#9c88ff'}}>
           Set-top Name
         </div>
-        <div className="col-lg-2 bg-black bg-opacity-25 text-center py-2 shadow">
+        <div className="col-lg-2 text-center text-white fw-bold py-2 shadow" style={{background:'#9c88ff'}}>
           IP Address
         </div>
-        <div className="col-lg-2 bg-black bg-opacity-25 text-center py-2 shadow">
+        <div className="col-lg-2 text-center text-white fw-bold py-2 shadow" style={{background:'#9c88ff'}}>
           DateTime
         </div>
       </div>
@@ -88,13 +88,13 @@ const AllSettops = () => {
                 ></i>
               </CopyToClipboard>
             </div>
-            <div className="col-lg-2 bg-black bg-opacity-10 py-2">
+            <div className="col-lg-2 py-2" style={{background:'#f0f0f0'}}>
               {data.d_device}
             </div>
             <div className="col-lg-2 bg-black bg-opacity-10 text-center py-2">
               {data.d_ip}
             </div>
-            <div className="col-lg-2 bg-black bg-opacity-10 text-center py-2">
+            <div className="col-lg-2 text-center py-2" style={{background:'#f0f0f0'}}>
               {checkDateTime(data.d_datetime) ? (
                 <div className="text-primary">{data.d_datetime}</div>
               ) : (

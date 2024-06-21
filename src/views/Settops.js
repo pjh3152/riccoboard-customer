@@ -61,13 +61,13 @@ const Settops = () => {
         </div>
       </div>
       <div className="row justify-content-center">
-        <div className="col-lg-2 bg-black bg-opacity-25 text-center py-2 shadow">
+        <div className="col-lg-2 text-center text-white fw-bold py-2 shadow" style={{background:'#9c88ff'}}>
           Set-top Name
         </div>
-        <div className="col-lg-2 bg-black bg-opacity-25 text-center py-2 shadow">
+        <div className="col-lg-2 text-center text-white fw-bold py-2 shadow" style={{background:'#9c88ff'}}>
           IP Address
         </div>
-        <div className="col-lg-2 bg-black bg-opacity-25 text-center py-2 shadow">
+        <div className="col-lg-2 text-center text-white fw-bold py-2 shadow" style={{background:'#9c88ff'}}>
           DateTime
         </div>
       </div>
@@ -77,7 +77,7 @@ const Settops = () => {
             <div className="col-lg-2 bg-black bg-opacity-10 py-2">
               {data.d_device}
             </div>
-            <div className="col-lg-2 bg-black bg-opacity-10 text-center py-2">
+            <div className="col-lg-2 text-center py-2" style={{background:'#f0f0f0'}}>
               {data.d_ip}
               <CopyToClipboard
                 text={data.d_ip}
