@@ -48,17 +48,26 @@ const AllSettops = () => {
     }
   };
 
+  const checkBoxChanged = (e) => {
+    // console.log(e.target.checked);
+    console.log(e.target.id);
+  }
+
   return (
     <div className="container mt-4">
       <Spinner load={load} />
       <div className="row justify-content-center">
-        <div className="col-lg-8 text-center d-flex justify-content-end py-2 pe-3">
+        <div className="col-lg-9 text-center d-flex justify-content-end align-items-center py-2 pe-3">
           <div title="새로고침" onClick={reload} style={{ cursor: "pointer" }}>
-            <i class="bi bi-arrow-clockwise"></i>
+            <i class="bi bi-arrow-clockwise me-4"></i>
           </div>
+          <button className="btn btn-primary">Delete</button>
         </div>
       </div>
       <div className="row justify-content-center">
+      <div className="col-lg-1 text-center text-white fw-bold py-2 shadow" style={{background:'#9c88ff'}}>
+          선택
+        </div>
         <div className="col-lg-2 text-center text-white fw-bold py-2 shadow" style={{background:'#9c88ff'}}>
           Customer
         </div>
@@ -75,6 +84,9 @@ const AllSettops = () => {
       {list.map((data) => {
         return (
           <div className="row justify-content-center">
+            <div className="col-lg-1 py-2 text-center" style={{background:'#f0f0f0'}}>
+              <input type="checkbox" id={data.d_idx} onChange={checkBoxChanged} />
+            </div>
             <div className="col-lg-2 bg-black bg-opacity-10 py-2">
               {data.d_customer}
               <CopyToClipboard
