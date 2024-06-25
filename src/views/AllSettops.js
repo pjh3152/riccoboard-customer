@@ -5,6 +5,7 @@ import { CopyToClipboard } from "react-copy-to-clipboard";
 import Swal from "sweetalert2";
 
 const AllSettops = () => {
+  let checkedValue = [];
   const [load, setLoad] = useState(false);
   const [list, setList] = useState([]);
 
@@ -48,10 +49,38 @@ const AllSettops = () => {
     }
   };
 
+  // 선택 체크박스 체크
   const checkBoxChanged = (e) => {
-    // console.log(e.target.checked);
-    console.log(e.target.id);
-  }
+    if (e.target.checked) {
+      checkedValue.push(e.target.id);
+    } else {
+      checkedValue.forEach((value, idx) => {
+        if (value === e.target.id) {
+          checkedValue.splice(idx, 1);
+        }
+      });
+    }
+  };
+
+  // 삭제
+  const deleteBtnClicked = () => {
+    Swal.fire({
+      title: "선택한 셋탑정보를 정말 삭제하시겠습니까?",
+      text: "삭제한 데이터는 복구할 수 없습니다!",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes",
+      cancelButtonText: "No",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        await axios.delete("/deleteSettops", {
+          params: { value: checkedValue },
+        });
+        getList();
+      }
+    });
+  };
 
   return (
     <div className="container mt-4">
@@ -61,31 +90,55 @@ const AllSettops = () => {
           <div title="새로고침" onClick={reload} style={{ cursor: "pointer" }}>
             <i class="bi bi-arrow-clockwise me-4"></i>
           </div>
-          <button className="btn btn-primary">Delete</button>
+          <button className="btn btn-primary" onClick={deleteBtnClicked}>
+            Delete
+          </button>
         </div>
       </div>
       <div className="row justify-content-center">
-      <div className="col-lg-1 text-center text-white fw-bold py-2 shadow" style={{background:'#9c88ff'}}>
+        <div
+          className="col-lg-1 text-center text-white fw-bold py-2 shadow"
+          style={{ background: "#9c88ff" }}
+        >
           선택
         </div>
-        <div className="col-lg-2 text-center text-white fw-bold py-2 shadow" style={{background:'#9c88ff'}}>
+        <div
+          className="col-lg-2 text-center text-white fw-bold py-2 shadow"
+          style={{ background: "#9c88ff" }}
+        >
           Customer
         </div>
-        <div className="col-lg-2 text-center text-white fw-bold py-2 shadow" style={{background:'#9c88ff'}}>
+        <div
+          className="col-lg-2 text-center text-white fw-bold py-2 shadow"
+          style={{ background: "#9c88ff" }}
+        >
           Set-top Name
         </div>
-        <div className="col-lg-2 text-center text-white fw-bold py-2 shadow" style={{background:'#9c88ff'}}>
+        <div
+          className="col-lg-2 text-center text-white fw-bold py-2 shadow"
+          style={{ background: "#9c88ff" }}
+        >
           IP Address
         </div>
-        <div className="col-lg-2 text-center text-white fw-bold py-2 shadow" style={{background:'#9c88ff'}}>
+        <div
+          className="col-lg-2 text-center text-white fw-bold py-2 shadow"
+          style={{ background: "#9c88ff" }}
+        >
           DateTime
         </div>
       </div>
       {list.map((data) => {
         return (
           <div className="row justify-content-center">
-            <div className="col-lg-1 py-2 text-center" style={{background:'#f0f0f0'}}>
-              <input type="checkbox" id={data.d_idx} onChange={checkBoxChanged} />
+            <div
+              className="col-lg-1 py-2 text-center"
+              style={{ background: "#f0f0f0" }}
+            >
+              <input
+                type="checkbox"
+                id={data.d_idx}
+                onChange={checkBoxChanged}
+              />
             </div>
             <div className="col-lg-2 bg-black bg-opacity-10 py-2">
               {data.d_customer}
@@ -100,13 +153,16 @@ const AllSettops = () => {
                 ></i>
               </CopyToClipboard>
             </div>
-            <div className="col-lg-2 py-2" style={{background:'#f0f0f0'}}>
+            <div className="col-lg-2 py-2" style={{ background: "#f0f0f0" }}>
               {data.d_device}
             </div>
             <div className="col-lg-2 bg-black bg-opacity-10 text-center py-2">
               {data.d_ip}
             </div>
-            <div className="col-lg-2 text-center py-2" style={{background:'#f0f0f0'}}>
+            <div
+              className="col-lg-2 text-center py-2"
+              style={{ background: "#f0f0f0" }}
+            >
               {checkDateTime(data.d_datetime) ? (
                 <div className="text-primary">{data.d_datetime}</div>
               ) : (

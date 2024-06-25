@@ -35,6 +35,18 @@ app.get("/allSettops", async (req, res) => {
   }
 });
 
+// 셋탑리스트 삭제 (관리자)
+app.delete("/deleteSettops", async (req, res) => {
+  try {
+    req.query.value.forEach(async (idx) => {
+      await db.execute(`DELETE FROM t_riccoboard WHERE d_idx = '${idx}'`);
+    });
+    res.send("success");
+  } catch {
+    res.send("failed");
+  }
+});
+
 // 고객정보 리스트 (관리자)
 app.get("/customerList", async (req, res) => {
   const result = await db.execute(
@@ -91,9 +103,7 @@ app.put("/editCustomer", async (req, res) => {
 // 고객정보 삭제 (관리자)
 app.delete("/deleteCustomer", async (req, res) => {
   try {
-    await db.execute(
-      `DELETE FROM t_customer WHERE d_idx = '${req.query.idx}'`
-    );
+    await db.execute(`DELETE FROM t_customer WHERE d_idx = '${req.query.idx}'`);
     res.send("success");
   } catch {
     res.send("failed");
