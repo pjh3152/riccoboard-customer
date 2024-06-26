@@ -65,7 +65,7 @@ const Login = () => {
       sessionStorage.setItem("customer", customer);
 
       if(customer === "admin") {
-        navigate("/allSettops");
+        navigate("/settopsByCustomer");
       } else {
         navigate("/settops");
       }

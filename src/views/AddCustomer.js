@@ -150,7 +150,7 @@ const AddCustomer = () => {
         return (
           <div className="row justify-content-center">
             <div className="col-lg-2 bg-black bg-opacity-10 py-2">
-              <div onClick={() => viewCustomer(data.d_idx, data.d_customer, data.d_pwd)} style={{cursor:'pointer'}}>{data.d_customer}</div>
+              <div key={data.d_idx} onClick={() => viewCustomer(data.d_idx, data.d_customer, data.d_pwd)} style={{cursor:'pointer'}}>{data.d_customer}</div>
             </div>
             <div className="col-lg-2 py-2" style={{background:'#f0f0f0'}}>
               {data.d_pwd}

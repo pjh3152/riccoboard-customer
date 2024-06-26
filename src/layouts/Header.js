@@ -34,7 +34,14 @@ const Header = () => {
             </div>
             {sessionStorage.getItem("customer") === "admin" ? (
               // 관리자 로그인
-              <div className="d-flex align-items-center me-2 text-light">
+              <div className="d-flex align-items-center me-2 text-light">                
+                <Link
+                  to="/settopsByCustomer"
+                  className="me-4 text-light text-decoration-none"
+                  title="고객별 셋탑"
+                >
+                  Set-tops by Customer
+                </Link>
                 <Link
                   to="/allSettops"
                   className="me-4 text-light text-decoration-none"

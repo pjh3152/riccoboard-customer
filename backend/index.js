@@ -35,6 +35,18 @@ app.get("/allSettops", async (req, res) => {
   }
 });
 
+// 고객별 셋탑리스트 (관리자)
+app.get("/settopsByCustomer", async (req, res) => {
+  const result = await db.execute(
+    `SELECT * FROM t_riccoboard WHERE d_customer = '${req.query.customer}' ORDER BY d_datetime DESC`
+  );
+  if (result.recordset.length > 0) {
+    res.send(result.recordset);
+  } else {
+    res.send("failed");
+  }
+});
+
 // 셋탑리스트 삭제 (관리자)
 app.delete("/deleteSettops", async (req, res) => {
   try {
