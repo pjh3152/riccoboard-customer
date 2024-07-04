@@ -54,7 +54,7 @@ const Settops = () => {
     <div className="container mt-4">
       <Spinner load={load} />
       <div className="row justify-content-center">
-        <div className="col-lg-6 text-center d-flex justify-content-end py-2 pe-3">
+        <div className="col-lg-8 text-center d-flex justify-content-end py-2 pe-3">
           <div title="새로고침" onClick={reload} style={{ cursor: "pointer" }}>
             <i class="bi bi-arrow-clockwise"></i>
           </div>
@@ -68,7 +68,10 @@ const Settops = () => {
           IP Address
         </div>
         <div className="col-lg-2 text-center text-white fw-bold py-2 shadow" style={{background:'#9c88ff'}}>
-          DateTime
+          First Time
+        </div>
+        <div className="col-lg-2 text-center text-white fw-bold py-2 shadow" style={{background:'#9c88ff'}}>
+          Update Time
         </div>
       </div>
       {list.map((data) => {
@@ -91,6 +94,9 @@ const Settops = () => {
               </CopyToClipboard>
             </div>
             <div className="col-lg-2 bg-black bg-opacity-10 text-center py-2">
+              <div className="text-success">{data.d_firsttime}</div>
+            </div>
+            <div className="col-lg-2 text-center py-2" style={{background:'#f0f0f0'}}>
               {checkDateTime(data.d_datetime) ? (
                 <div className="text-primary">{data.d_datetime}</div>
               ) : (

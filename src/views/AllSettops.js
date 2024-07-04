@@ -91,7 +91,7 @@ const AllSettops = () => {
     <div className="container mt-4">
       <Spinner load={load} />
       <div className="row justify-content-center">
-        <div className="col-lg-9 text-center d-flex justify-content-end align-items-center py-2 pe-3">
+        <div className="col-lg-11 text-center d-flex justify-content-end align-items-center py-2 pe-3">
           <div title="새로고침" onClick={reload} style={{ cursor: "pointer" }}>
             <i class="bi bi-arrow-clockwise me-4"></i>
           </div>
@@ -125,11 +125,14 @@ const AllSettops = () => {
         >
           IP Address
         </div>
+        <div className="col-lg-2 text-center text-white fw-bold py-2 shadow" style={{background:'#9c88ff'}}>
+          First Time
+        </div>
         <div
           className="col-lg-2 text-center text-white fw-bold py-2 shadow"
           style={{ background: "#9c88ff" }}
         >
-          DateTime
+          Update Time
         </div>
       </div>
       {list.map((data, idx) => {
@@ -165,9 +168,11 @@ const AllSettops = () => {
             <div className="col-lg-2 bg-black bg-opacity-10 text-center py-2">
               {data.d_ip}
             </div>
+            <div className="col-lg-2 text-center py-2" style={{ background: "#f0f0f0" }}>
+              <div className="text-success">{data.d_firsttime}</div>
+            </div>
             <div
-              className="col-lg-2 text-center py-2"
-              style={{ background: "#f0f0f0" }}
+              className="col-lg-2 bg-black bg-opacity-10 text-center py-2"
             >
               {checkDateTime(data.d_datetime) ? (
                 <div className="text-primary">{data.d_datetime}</div>
