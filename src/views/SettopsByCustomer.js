@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import Spinner from "../components/Spinner";
+import { CopyToClipboard } from "react-copy-to-clipboard";
 import Swal from "sweetalert2";
 
 const SettopsByCustomer = () => {
@@ -100,6 +101,16 @@ const SettopsByCustomer = () => {
     });
   };
 
+  // IP 클립보드 복사
+  const copyClipBoard = (ip) => {
+    Swal.fire({
+      title: "복사되었습니다 (" + ip + ")",
+      timer: 1500,
+      showConfirmButton: true,
+      icon: "success",
+    });
+  };
+
   return (
     <div className="container mt-4">
       <Spinner load={load} />
@@ -173,6 +184,16 @@ const SettopsByCustomer = () => {
             </div>
             <div className="col-lg-2 text-center py-2" style={{ background: "#f0f0f0" }}>
               {data.d_ip}
+              <CopyToClipboard
+                text={data.d_ip}
+                onCopy={() => copyClipBoard(data.d_ip)}
+              >
+                <i
+                  className="bi bi-copy ms-3"
+                  title="복사"
+                  style={{ cursor: "pointer" }}
+                ></i>
+              </CopyToClipboard>
             </div>
             <div className="col-lg-2 bg-black bg-opacity-10 text-center py-2">
               <div className="text-success">{data.d_firsttime}</div>

@@ -30,9 +30,19 @@ const AllSettops = () => {
   };
 
   // Customer 클립보드 복사
-  const copyClipBoard = (customer) => {
+  const copyClipBoardCustomer = (customer) => {
     Swal.fire({
       title: "복사되었습니다 (" + customer + ")",
+      timer: 1500,
+      showConfirmButton: true,
+      icon: "success",
+    });
+  };
+
+  // IP 클립보드 복사
+  const copyClipBoardIP = (ip) => {
+    Swal.fire({
+      title: "복사되었습니다 (" + ip + ")",
       timer: 1500,
       showConfirmButton: true,
       icon: "success",
@@ -153,7 +163,7 @@ const AllSettops = () => {
               {data.d_customer}
               <CopyToClipboard
                 text={data.d_customer}
-                onCopy={() => copyClipBoard(data.d_customer)}
+                onCopy={() => copyClipBoardCustomer(data.d_customer)}
               >
                 <i
                   className="bi bi-copy ms-3"
@@ -167,6 +177,16 @@ const AllSettops = () => {
             </div>
             <div className="col-lg-2 bg-black bg-opacity-10 text-center py-2">
               {data.d_ip}
+              <CopyToClipboard
+                text={data.d_ip}
+                onCopy={() => copyClipBoardIP(data.d_ip)}
+              >
+                <i
+                  className="bi bi-copy ms-3"
+                  title="복사"
+                  style={{ cursor: "pointer" }}
+                ></i>
+              </CopyToClipboard>
             </div>
             <div className="col-lg-2 text-center py-2" style={{ background: "#f0f0f0" }}>
               <div className="text-success">{data.d_firsttime}</div>
