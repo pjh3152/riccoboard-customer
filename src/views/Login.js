@@ -74,8 +74,10 @@ const Login = () => {
 
   return (
     <div className="d-flex justify-content-center align-items-center min-vh-100">
+      {/* Video 표시 */}
+      <video className="position-absolute object-fit-cover w-100 h-100" preload="auto" autoplay="true" loop="loop" muted="muted" volume="0" src={process.env.PUBLIC_URL + '/DIS-Promotion.mp4'} />
       <div
-        className="border pt-4 pb-2 text-center bg-light shadow rounded-3"
+        className="position-absolute border pt-4 pb-2 text-center bg-light shadow rounded-3"
         style={{ width: "300px" }}
       >
         <p>RiccoBoard set-top IP 확인</p>
