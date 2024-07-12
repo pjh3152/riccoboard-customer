@@ -16,6 +16,11 @@ const Login = () => {
   const [cookies, setCookie, removeCookie] = useCookies(["customer"]);
   const navigate = useNavigate();
 
+  // 마우스 우클릭 방지
+  window.oncontextmenu = () => { return false; }
+  window.onselectstart = () => { return false; }
+  window.ondragstart = () => { return false; }
+
   useEffect(() => {
     if (cookies.customer) {
       customerRef.current.value = cookies.customer;
